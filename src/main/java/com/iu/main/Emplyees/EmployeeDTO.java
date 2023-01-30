@@ -3,19 +3,24 @@ package com.iu.main.Emplyees;
 import java.sql.Date;
 import java.util.ArrayList;
 
-public class EmployeeDTO {
+import com.iu.main.departments.DepartmentDTO;
+
+public class EmployeeDTO{
 	
 	private Integer employee_id;
 	private String first_name;
 	private String last_name;
 	private String email;
 	private String phone_number;
-	private Date hire_date;
+	private String hire_date;
 	private String job_id;
 	private double salary;
 	private double commission_pct;
 	private Integer manager_id;
 	private Integer department_id;
+	
+	private DepartmentDTO departmentDTO;
+	
 	
 	public Integer getEmployee_id() {
 		return employee_id;
@@ -47,10 +52,10 @@ public class EmployeeDTO {
 	public void setPhone_number(String phone_number) {
 		this.phone_number = phone_number;
 	}
-	public Date getHire_date() {
+	public String getHire_date() {
 		return hire_date;
 	}
-	public void setHire_date(Date hire_date) {
+	public void setHire_date(String hire_date) {
 		this.hire_date = hire_date;
 	}
 	public String getJob_id() {
@@ -83,6 +88,9 @@ public class EmployeeDTO {
 	public void setDepartment_id(Integer department_id) {
 		this.department_id = department_id;
 	}
+	
+	
+	
 	
 	
 	

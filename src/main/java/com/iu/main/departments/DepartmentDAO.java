@@ -6,9 +6,71 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import com.iu.main.Emplyees.EmployeeDTO;
 import com.iu.main.util.DBConnection;
 
 public class DepartmentDAO {
+	
+	public void getInfos()throws Exception{
+		//30번 부서명 
+		Connection con = DBConnection.getConnection();
+		
+		String sql ="SELECT E.FIRST_NAME,D.DEPARTMENT_NAME"
+				+ "FROM EMPLOYEES E"
+				+ "INNER JOIN"
+				+ "DEPARTMENTS D"
+				+ "ON (E.DEPARTMENT_ID + D.DEPARTMENT_ID"
+				+ "WHERE D.DEPARTMENT_ID+30";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		DepartmentDTO departmentDTO = new DepartmentDTO();
+		departmentDTO.setEmployeeDTOs(new ArrayList<EmployeeDTO>());
+		while(rs.next()) {
+			if(departmentDTO.getDepartmnet_name()== null) {
+				departmentDTO.setDepartmnet_name(rs.getString("DEPARTMENT_NAME"));
+			}
+			departmentDTO.setDepartmnet_name(rs.getString("DEPARTMENT_NAME"));
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			employeeDTO.setFirst_name(rs.getString("FIRST_NAME"));
+			departmentDTO.getEmployeeDTOs().add(employeeDTO);
+			                 	
+			
+		}
+		
+	}
+	
+	//join
+	public DepartmentDTO getInfo()throws Exception{
+		
+		DepartmentDTO departmentDTO = new DepartmentDTO();
+		Connection con = DBConnection.getConnection();
+		
+		String sql="SELECT E.FIRST_NAME, D.DEPARTMENT_NAME"
+				+ "FORM EMPLOYEES E "
+				+ "INNER JOIN "
+				+ "DEPARTMENTS D"
+				+ "ON(E.DEPARTMENT_ID=D.DEPARTMENT_ID)"
+				+ "WHERE E.EMPLOYEE_ID = 100";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			departmentDTO = new DepartmentDTO();
+			departmentDTO.setEmployeeDTOs(new ArrayList<EmployeeDTO>());
+			departmentDTO.setDepartmnet_name(rs.getString("DEPARTMENT_NAME"));
+			departmentDTO.getEmployeeDTOs().get(0).setFirst_name(rs.getString(0));
+			EmployeeDTO employeeDTO = new EmployeeDTO();
+			employeeDTO.setFirst_name(rs.getString("FIRST_NAME"));
+			departmentDTO.getEmployeeDTOs().add(employeeDTO);
+			
+		}
+		return departmentDTO;
+	}
+	
 	//update
 	public int updateData(DepartmentDTO departmentDTO) throws Exception{
 		Connection con = DBConnection.getConnection();

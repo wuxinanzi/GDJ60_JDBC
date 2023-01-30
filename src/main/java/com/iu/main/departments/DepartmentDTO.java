@@ -1,6 +1,10 @@
 package com.iu.main.departments;
 
-public class DepartmentDTO {
+import java.util.ArrayList;
+
+import com.iu.main.Emplyees.EmployeeDTO;
+
+public class DepartmentDTO{
 	//DTO 데이터 전송
 	//모든 멤버변수의 접근지정자는 private
 	//멤버변수의 데이터타입과 변수명은
@@ -12,8 +16,16 @@ public class DepartmentDTO {
 	private Integer manager_id;
 	private Integer location_id;
 	
+	private ArrayList<EmployeeDTO> employeeDTOs;
 	
 	
+	
+	public ArrayList<EmployeeDTO> getEmployeeDTOs() {
+		return employeeDTOs;
+	}
+	public void setEmployeeDTOs(ArrayList<EmployeeDTO> employeeDTOs) {
+		this.employeeDTOs = employeeDTOs;
+	}
 	public Integer getDepartment_id() {
 		return department_id;
 	}
@@ -38,6 +50,15 @@ public class DepartmentDTO {
 	public void setLocation_id(Integer location_id) {
 		this.location_id = location_id;
 	}
+	public Object getDepartment_name() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setDepartment_name(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 

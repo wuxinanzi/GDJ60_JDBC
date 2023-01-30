@@ -26,7 +26,7 @@ public class EmployeeInput {
 		System.out.println("수정할 핸드폰을 입력하세요");
 		employeeDTO.setPhone_number(sc.next());
 		System.out.println("수정할 입사 날짜를 입력하세요");
-		employeeDTO.setHire_date(date());
+		employeeDTO.setHire_date(sc.next());
 		System.out.println("수정할 직업 아이디를 입력하세요");
 		employeeDTO.setJob_id(sc.next());
 		System.out.println("수정할 확인 받은걸 입력하세요");
@@ -51,7 +51,7 @@ public class EmployeeInput {
 		System.out.println("핸드폰을 입력하세요");
 		employeeDTO.setPhone_number(sc.next());
 		System.out.println("입사 날짜를 입력하세요");
-		employeeDTO.setHire_date(date());
+		employeeDTO.setHire_date(sc.next());
 		System.out.println("직업 아이디를 입력하세요");
 		employeeDTO.setJob_id(sc.next());
 		System.out.println("확인 받은걸 입력하세요");

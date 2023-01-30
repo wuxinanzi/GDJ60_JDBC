@@ -4,10 +4,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.iu.main.util.DBConnection;
 
 public class EmployeeDAO {
+	//월급의 평균
+	
+	public void getAvg() throws Exception{
+		HashMap<String, Double> map = new HashMap<String, Double>();
+		
+		Connection con = DBConnection.getConnection();
+		
+		String sql="SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD DAY')   \r\n"
+				+ "FROM EMPLOYEES;";
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		
+		rs.next();
+		
+		map.put("avg",rs.getDouble('A'));
+		map.put("sum",rs.getDouble(2));
+//		System.out.println(rs.getDouble("A"));
+//		System.out.println(rs.getDouble(2));
+		
+		DBConnection.disConnect(rs, st, con);
+		
+		
+	}
 
 	public ArrayList<EmployeeDTO> getList() throws Exception {
 		ArrayList<EmployeeDTO> ar = new ArrayList<EmployeeDTO>();
@@ -63,7 +89,7 @@ public class EmployeeDAO {
 			employeeDTO.setJob_id(rs.getString("JOB_ID"));
 			employeeDTO.setDepartment_id(rs.getInt("DEPARTMENT_ID"));
 			employeeDTO.setSalary(rs.getDouble("SALARY"));
-			employeeDTO.setHire_date(rs.getDate("HIRE_DATE"));
+			employeeDTO.setHire_date(rs.getString("HIRE_DATE"));
 			
 			ar.add(employeeDTO);
 		}
